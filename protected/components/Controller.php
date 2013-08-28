@@ -42,7 +42,7 @@ class Controller extends CController
 		$this->cs->registerCoreScript('jquery');
 
 		//Change theme
-		Yii::app()->theme = 'sofia';
+		Yii::app()->theme = 'flowers';
 
 		if(Yii::app()->getRequest()->getParam('update_assets')) $this->forceCopyAssets = true;
 
@@ -83,7 +83,7 @@ class Controller extends CController
 
 	public function beforeRender($view)
     {
-        $this->renderPartial('//layouts/clips/_main_menu'); 
+        //$this->renderPartial('//layouts/clips/_main_menu'); 
 
         return parent::beforeRender($view);
     }
