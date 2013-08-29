@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?=CHtml::encode($data->link)?>" class="icon vk">
+                <a href="http://<?=CHtml::encode($data->link)?>" class="icon vk">
                     <i></i>
                     <?=CHtml::encode($data->link)?>
                 </a>

@@ -5,12 +5,13 @@
 <title>title</title>
 <link rel="stylesheet/less" type="text/css" href="<?=$this->getAssetsUrl()?>/css/styles.less">
 <script src="<?=$this->getAssetsUrl()?>/js/less.js" type="text/javascript"></script>
-<script src="<?=$this->getAssetsUrl()?>/js/jquery.js" type="text/javascript"></script>
+<?/*<script src="<?=$this->getAssetsUrl()?>/js/jquery.js" type="text/javascript"></script>*/?>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.measurer.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.gradienttext.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/cusel.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/common.js"></script>
 <script>
   $(document).ready(function(){
      $('.slogan').gradientText({

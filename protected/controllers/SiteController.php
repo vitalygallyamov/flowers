@@ -2,7 +2,11 @@
 
 class SiteController extends Controller
 {
+
 	public $layout = "//layouts/home";
+
+	//limit reviews on page
+	public $reviews_limit = 5;
 
 	//public $count;
 	/**
@@ -32,15 +36,48 @@ class SiteController extends Controller
 	{
 		//get reviews
 
-		$reviews=new CActiveDataProvider('Reviews');
+
+		// $reviews_criteria = new CDbCriteria;
+  //       $reviews_criteria->limit = 4;
+
+		$reviews=new CActiveDataProvider('Reviews',array(
+			'pagination'=>array(
+		        'pageSize'=>5,
+		    ),
+		));
 		// $this->render('index',array(
 		// 	'dataProvider'=>$dataProvider,
 		// ));
+
+		if(isset($_GET['ajax']) && $_GET['ajax'] == 'reviews'){
+			$this->renderPartial('reviews', array('reviews' => $reviews));
+			Yii::app()->end();
+		}
 
 
 		$this->render('index', array(
 			'reviews' => $reviews
 		));
+	}
+
+	public function actionUpdateReviews(){
+		$reviews=new CActiveDataProvider('Reviews',array(
+			'pagination'=>array(
+		        'pageSize'=>5,
+		    ),
+		));
+
+		if(ceil(($reviews->totalItemCount / $this->reviews_limit)) < intval($_GET['Reviews_page'])){
+			unset($_GET);
+			$reviews=new CActiveDataProvider('Reviews',array(
+				'pagination'=>array(
+			        'pageSize'=>5,
+			    ),
+			));			
+		}
+
+		$this->renderPartial('reviews', array('reviews' => $reviews));
+		Yii::app()->end();
 	}
 
 	/**

@@ -39,7 +39,7 @@ class Controller extends CController
 		parent::init();
 		
 		$this->cs = Yii::app()->clientScript;
-		$this->cs->registerCoreScript('jquery');
+		//$this->cs->registerCoreScript('jquery');
 
 		//Change theme
 		Yii::app()->theme = 'flowers';
