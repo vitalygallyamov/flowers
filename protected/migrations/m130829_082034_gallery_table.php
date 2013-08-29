@@ -1,6 +1,6 @@
 <?php
 
-class m130711_095829_create_gallery_tables extends CDbMigration
+class m130829_082034_gallery_table extends CDbMigration
 {
 	public function up() {
 	  $this->createTable( 'gallery', array(

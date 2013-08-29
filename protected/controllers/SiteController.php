@@ -5,8 +5,6 @@ class SiteController extends Controller
 	public $layout = "//layouts/home";
 
 	//public $count;
-
-	public $city_block_rooms;
 	/**
 	 * Declares class-based actions.
 	 */
@@ -32,8 +30,17 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		//get reviews
 
-		$this->render('index');
+		$reviews=new CActiveDataProvider('Reviews');
+		// $this->render('index',array(
+		// 	'dataProvider'=>$dataProvider,
+		// ));
+
+
+		$this->render('index', array(
+			'reviews' => $reviews
+		));
 	}
 
 	/**

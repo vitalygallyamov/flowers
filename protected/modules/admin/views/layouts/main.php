@@ -19,9 +19,13 @@
 	            'class'=>'bootstrap.widgets.TbMenu',
 	            'items'=>array(
 	            	//example
-	                array('label'=>'Каталог', 'url'=>'#', 'active'=> (strpos($this->getId(), 'start') !== false), 'items' => array(
-	                	array('label'=>'Создать', 'url'=>'#'),
-	                    array('label'=>'Управление', 'url'=>'#'),
+	                array('label'=>'Цветы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'catalog') !== false), 'items' => array(
+	                	array('label'=>'Создать', 'url'=>'/admin/catalog/create'),
+	                    array('label'=>'Управление', 'url'=>'/admin/catalog/admin'),
+	                )),
+	                array('label'=>'Отзывы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'reviews') !== false), 'items' => array(
+	                	array('label'=>'Создать', 'url'=>'/admin/reviews/create'),
+	                    array('label'=>'Управление', 'url'=>'/admin/reviews/admin'),
 	                )),
 	            ),
 	        ),
@@ -37,13 +41,13 @@
 
     <div class="container-fluid">
 		<div class="row-fluid">
-	    	<div class="span1">
+	    	<div class="span2">
 	      	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 			    'type'=>'list',
 			    'items'=> $this->menu
 			    )); ?>
 	    	</div>
-	    	<div class="span11">
+	    	<div class="span10">
 	      		<?php echo $content;?>
 	    	</div>
 	  	</div>
