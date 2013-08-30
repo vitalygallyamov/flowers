@@ -86,7 +86,7 @@ class CatalogController extends AdminController
 				$model->save(false);
 
 				//categories
-				if(isset($_POST['category'])){
+				if(isset($_POST['category']) && !empty($_POST['category'])){
 					
 					$cmDb = Yii::app()->db->createCommand();
 					foreach ($_POST['category'] as $value) {
@@ -98,7 +98,7 @@ class CatalogController extends AdminController
 				}
 
 				//reasons
-				if(isset($_POST['reasons'])){
+				if(isset($_POST['reasons'])  && !empty($_POST['reasons'])){
 					
 					$cmDb = Yii::app()->db->createCommand();
 					foreach ($_POST['reasons'] as $value) {
