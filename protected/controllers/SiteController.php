@@ -35,31 +35,26 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		//get reviews
-
-
-		// $reviews_criteria = new CDbCriteria;
-  //       $reviews_criteria->limit = 4;
-
 		$reviews=new CActiveDataProvider('Reviews',array(
 			'pagination'=>array(
 		        'pageSize'=>5,
 		    ),
 		));
-		// $this->render('index',array(
-		// 	'dataProvider'=>$dataProvider,
-		// ));
 
-		if(isset($_GET['ajax']) && $_GET['ajax'] == 'reviews'){
-			$this->renderPartial('reviews', array('reviews' => $reviews));
-			Yii::app()->end();
-		}
-
+		//get catalog
+		$catalog = new CActiveDataProvider('Catalog',array(
+			'pagination'=>array(
+		        'pageSize'=>6,
+		    ),
+		));
 
 		$this->render('index', array(
-			'reviews' => $reviews
+			'reviews' => $reviews,
+			'catalog' => $catalog
 		));
 	}
 
+	//ajax update reviews
 	public function actionUpdateReviews(){
 		$reviews=new CActiveDataProvider('Reviews',array(
 			'pagination'=>array(

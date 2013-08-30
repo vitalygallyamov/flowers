@@ -22,6 +22,14 @@
 	                array('label'=>'Цветы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'catalog') !== false), 'items' => array(
 	                	array('label'=>'Создать', 'url'=>'/admin/catalog/create'),
 	                    array('label'=>'Управление', 'url'=>'/admin/catalog/admin'),
+	                    '---',
+	                    array('label'=>'Категории'),
+	                    array('label'=>'Создать', 'url'=>'/admin/category/create'),
+	                    array('label'=>'Управление', 'url'=>'/admin/category/admin'),
+	                    '---',
+	                    array('label'=>'Поводы'),
+	                    array('label'=>'Создать', 'url'=>'/admin/reasons/create'),
+	                    array('label'=>'Управление', 'url'=>'/admin/reasons/admin'),
 	                )),
 	                array('label'=>'Отзывы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'reviews') !== false), 'items' => array(
 	                	array('label'=>'Создать', 'url'=>'/admin/reviews/create'),

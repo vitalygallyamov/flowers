@@ -57,7 +57,8 @@
     </div>
 
     <div class="product">
-        <img src="<?=$this->getAssetsUrl()?>/images/prod.png" alt="" title=""/>
+        <!-- <img src="<?=$this->getAssetsUrl()?>/images/prod.png" alt="" title=""/> -->
+        <div class="rew"><? $this->renderPartial('catalog', array('catalog' => $catalog));?></div>
     </div>
 
     <div class="plus">

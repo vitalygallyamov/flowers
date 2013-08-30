@@ -1,3 +1,5 @@
+<?php Yii::import('admin_ext.chosen.Chosen'); ?>
+
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'flowers-form',
 	'enableAjaxValidation'=>false,
@@ -13,9 +15,21 @@
 
 	<?php echo $form->textFieldRow($model,'discount_price',array('class'=>'span5')); ?>
 
-	<?php //echo $form->fileFieldRow($model,'img'); ?>
-
 	<?php echo $form->textAreaRow($model,'desc',array('maxlength'=>255)); ?>
+
+	<div>
+		<?php
+			echo CHtml::label('Категории', 'category');
+			echo Chosen::multiSelect('category', CHtml::listData($model->categories, 'name', 'id'), Category::getList());
+		?>
+	</div>
+
+	<div>
+		<?php
+			echo CHtml::label('Повод', 'reasons');
+			echo Chosen::multiSelect('reasons', CHtml::listData($model->reasons, 'name', 'id'), Reasons::getList());
+		?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

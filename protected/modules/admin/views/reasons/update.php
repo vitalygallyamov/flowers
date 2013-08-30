@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Каталог'=>array('admin'),
-	$model->title=>array('view','id'=>$model->title),
+	'Поводы'=>array('admin'),
+	$model->name=>array('view','id'=>$model->name),
 	'Обновить',
 );
 
@@ -12,6 +12,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Обновить букет <?php echo $model->title; ?></h1>
+<h1>Обновить повод - <?php echo $model->name; ?></h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
