@@ -82,8 +82,6 @@ class SiteController extends Controller
 	//order action
 	public function actionOrder(){
 		if(isset($_POST['Orders'])){
-			print_r($_POST);
-			die();
 
 			if($_POST['pay_type'] == 0 && $_POST['good'] > 0){
 
