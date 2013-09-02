@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>title</title>
 <link rel="stylesheet/less" type="text/css" href="<?=$this->getAssetsUrl()?>/css/styles.less">
+<link rel="stylesheet/less" type="text/css" href="<?=$this->getAssetsUrl()?>/js/fancybox/jquery.fancybox.css">
 <script src="<?=$this->getAssetsUrl()?>/js/less.js" type="text/javascript"></script>
 <?/*<script src="<?=$this->getAssetsUrl()?>/js/jquery.js" type="text/javascript"></script>*/?>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
@@ -11,23 +12,24 @@
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.gradienttext.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/cusel.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/common.js"></script>
 <script>
   $(document).ready(function(){
-     $('.slogan').gradientText({
+      $('.slogan').gradientText({
          colors: ['#ed087f', '#ee5139']
-     });
+      });
       $('.tel').gradientText({
           colors: ['#39b5a5', '#9acd5a']
       });
   });
-  $(function(select_cusel){
-      var params = {
-          changedEl: "select",
-          scrollArrows: false
-      }
-      cuSel(params);
-  });
+  // $(function(select_cusel){
+  //     var params = {
+  //         changedEl: "select",
+  //         scrollArrows: false
+  //     }
+  //     cuSel(params);
+  // });
   jQuery(document).ready(function() {
       jQuery('#carousel').jcarousel({
           scroll: 6,

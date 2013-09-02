@@ -31,34 +31,33 @@
             </nav>
 
             <div class="filter">
-                <select id="fProduct">
-                    <option value="0">
-                        Товары
-                    </option>
-                </select>
-                <select id="fPrice">
-                    <option value="0">
-                        Цена
-                    </option>
-                </select>
-                <select id="fFloweras">
-                    <option value="0">
-                        Цветы
-                    </option>
-                </select>
-                <select id="fDay">
-                    <option value="0">
-                        Повод
-                    </option>
-                </select>
+                <form action="" id="catalog-filter">
+                    <?php echo Chtml::dropDownList('Filter[category]', 0, 
+                        CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
+                    <select id="fPrice" name="Filter[price]">
+                        <option value="0">
+                            Цена
+                        </option>
+                    </select>
+                    <select id="fFloweras" name="Filter[flowers]">
+                        <option value="0">
+                            Цветы
+                        </option>
+                    </select>
+                    <?php echo Chtml::dropDownList('Filter[reason]', 0, 
+                        CHtml::listData(Reasons::model()->findAll(), 'id', 'name')); ?>
+                </form>
             </div>
             <div class="clear"></div>
         </div>
     </div>
 
-    <div class="product">
+    <div id="catalog" class="product">
         <!-- <img src="<?=$this->getAssetsUrl()?>/images/prod.png" alt="" title=""/> -->
         <div class="rew"><? $this->renderPartial('catalog', array('catalog' => $catalog));?></div>
+        <div id="order-form" style="display: none;">
+            <? $this->renderPartial('_order_form', array('model' => $order)); ?>
+        </div>
     </div>
 
     <div class="plus">

@@ -34,6 +34,9 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		//order model
+		$order = new Orders;
+
 		//get reviews
 		$reviews=new CActiveDataProvider('Reviews',array(
 			'pagination'=>array(
@@ -50,7 +53,8 @@ class SiteController extends Controller
 
 		$this->render('index', array(
 			'reviews' => $reviews,
-			'catalog' => $catalog
+			'catalog' => $catalog,
+			'order' => $order
 		));
 	}
 
@@ -75,10 +79,79 @@ class SiteController extends Controller
 		Yii::app()->end();
 	}
 
+	//order action
+	public function actionOrder(){
+		if(isset($_POST['Orders'])){
+			print_r($_POST);
+			die();
+
+			if($_POST['pay_type'] == 0 && $_POST['good'] > 0){
+
+				$order = $this->loadOrder($_POST['good']);
+
+				$kassa = new Robokassa('merchant_login', 'pass1', 'pass2', true);
+				$kassa->OutSum = $order->price;
+				$kassa->InvId = $order->id;
+				$kassa->IncCurrLabel = 'WMRM';
+				$kassa->Desc         = 'Тестовая оплата';
+
+				header('Location: ' . $kassa->getRedirectURL());
+			}
+		}
+		Yii::app()->end();
+	}
+
+	public function loadOrder($id)
+	{
+		$model=Orders::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	//catalog filter action
+	public function actionFilterCatalog(){
+
+		$criteria = new CDbCriteria();
+
+		if(isset($_POST['Filter'])){
+			$filter = $_POST['Filter'];
+
+			//category
+			if($filter['category'] != 0 && $filter['reason'] != 0){
+				$criteria->with = array('categories', 'reasons');
+				$criteria->together = true;
+				$criteria->addCondition('category_id=:category_id AND reason_id=:reason_id');
+				$criteria->params[':category_id'] = $filter['category'];
+				$criteria->params[':reason_id'] = $filter['reason'];
+			}
+
+			//reasons
+			// if(){
+			// 	$criteria->with = array('reasons');	
+			// 	$criteria->together = true;
+			// 	$criteria->addCondition('reason_id=:reason_id');
+			// 	$criteria->params[':reason_id'] = $filter['reason'];
+			// }
+		}
+		//print_r($_POST['Filter']);die();
+
+		$catalog = new CActiveDataProvider('Catalog',array(
+			'criteria' => $criteria,
+			'pagination'=>array(
+		        'pageSize'=>6,
+		    ),
+		));
+
+		$this->renderPartial('catalog', array('catalog' => $catalog));
+
+		Yii::app()->end();
+	}
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */
-	public function actionError()
+	/*public function actionError()
 	{
 		if($error=Yii::app()->errorHandler->error)
 		{
@@ -87,12 +160,12 @@ class SiteController extends Controller
 			else
 				$this->render('error', $error);
 		}
-	}
+	}*/
 
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
+	/*public function actionContact()
 	{
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
@@ -113,12 +186,12 @@ class SiteController extends Controller
 			}
 		}
 		$this->render('contact',array('model'=>$model));
-	}
+	}*/
 
 	/**
 	 * Displays the login page
 	 */
-	public function actionLogin()
+	/*public function actionLogin()
 	{
 		$this->layout = '//layouts/simple';
 
@@ -141,14 +214,14 @@ class SiteController extends Controller
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
-	}
+	}*/
 
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
-	public function actionLogout()
+	/*public function actionLogout()
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
-	}
+	}*/
 }

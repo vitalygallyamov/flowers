@@ -35,6 +35,9 @@
 	                	array('label'=>'Создать', 'url'=>'/admin/reviews/create'),
 	                    array('label'=>'Управление', 'url'=>'/admin/reviews/admin'),
 	                )),
+	                array('label'=>'Заказы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'orders') !== false), 'items' => array(
+	                    array('label'=>'Управление', 'url'=>'/admin/orders/admin'),
+	                )),
 	            ),
 	        ),
 	        array(

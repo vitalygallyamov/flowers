@@ -1,4 +1,6 @@
 jQuery(document).ready(function(){
+
+	//ajax update reviews
 	$('.update-reviews').on('click', function(e){
 		e.preventDefault();
 		var link = $(this);
@@ -18,6 +20,28 @@ jQuery(document).ready(function(){
 				// $('.r_offset').val($(result).find('.r_offset').val());
 				
 				link.data('page', page+1);
+			}
+		});
+	});
+
+	//
+	$('#catalog').on('click', '.set-order', function(e){
+		e.preventDefault();
+
+		var id = $(this).data('good');
+		$('#order-form').find('.good-id').val(id);
+
+		$.fancybox.open('#order-form');
+	});
+
+	//filter catalog
+	$('.filter').on('change', 'select', function(){
+		$.ajax({
+			url: '/site/filterCatalog',
+			type: 'POST',
+			data: $('#catalog-filter').serialize(),
+			success: function(result){
+				$('#catalog .rew').html(result);
 			}
 		});
 	});

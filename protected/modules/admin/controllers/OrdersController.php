@@ -1,6 +1,6 @@
 <?php
 
-class CatalogController extends AdminController
+class OrdersController extends AdminController
 {
 
 	/**
@@ -56,61 +56,16 @@ class CatalogController extends AdminController
 	 */
 	public function actionCreate()
 	{
-		$model=new Catalog;
+		$model=new Orders;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		//print_r($_POST); die();
-
-		if(isset($_POST['Catalog']))
+		if(isset($_POST['Orders']))
 		{
-			$model->attributes=$_POST['Catalog'];
-
-			if($model->validate()){
-				//Create Gallery
-				$gallery = new Gallery();
-				$gallery->name = true;
-				$gallery->description = true;
-				$gallery->versions = array(
-				    'mini' => array(
-	                    'adaptiveResize' => array(326, 426),
-	                ),
-	                'medium' => array(
-	                    'resize' => array(1200, 1000),
-	                )
-				);
-				$gallery->save();
-
-				$model->gallery_id = $gallery->id;
-				$model->save(false);
-
-				//categories
-				if(isset($_POST['category']) && !empty($_POST['category'])){
-					
-					$cmDb = Yii::app()->db->createCommand();
-					foreach ($_POST['category'] as $value) {
-						$cmDb->insert('catalog_category', array(
-							'catalog_id' => $model->id,
-							'category_id' => $value
-						));
-					}
-				}
-
-				//reasons
-				if(isset($_POST['reasons'])  && !empty($_POST['reasons'])){
-					
-					$cmDb = Yii::app()->db->createCommand();
-					foreach ($_POST['reasons'] as $value) {
-						$cmDb->insert('catalog_reasons', array(
-							'catalog_id' => $model->id,
-							'reason_id' => $value
-						));
-					}
-				}
-
+			$model->attributes=$_POST['Orders'];
+			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
-			}
 		}
 
 		$this->render('create',array(
@@ -127,47 +82,15 @@ class CatalogController extends AdminController
 	{
 		$model=$this->loadModel($id);
 
-		$cmDb = Yii::app()->db->createCommand();
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		//categories
-		if(isset($_POST['category'])){
-			$cmDb->delete('catalog_category', 'catalog_id=:id', array(':id' => $model->id));
-			
-			if(!empty($_POST['category'])){
-				foreach ($_POST['category'] as $value) {
-					$cmDb->insert('catalog_category', array(
-						'catalog_id' => $model->id,
-						'category_id' => $value
-					));
-				}
-			}
-		}
-
-		//reasons
-		if(isset($_POST['reasons'])){
-			$cmDb->delete('catalog_reasons', 'catalog_id=:id', array(':id' => $model->id));
-
-			if(!empty($_POST['reasons'])){
-				foreach ($_POST['reasons'] as $value) {
-					$cmDb->insert('catalog_reasons', array(
-						'catalog_id' => $model->id,
-						'reason_id' => $value
-					));
-				}
-			}
-		}
-
-		if(isset($_POST['Catalog']))
+		if(isset($_POST['Orders']))
 		{
-			$model->attributes=$_POST['Catalog'];
+			$model->attributes=$_POST['Orders'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
-
-		
 
 		$this->render('update',array(
 			'model'=>$model,
@@ -183,13 +106,8 @@ class CatalogController extends AdminController
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
-			$model = $this->loadModel($id);
-			//clear
-			$cmDb = Yii::app()->db->createCommand();
-			$cmDb->delete('catalog_category', 'catalog_id=:id', array(':id' => $model->id));
-			$cmDb->delete('catalog_reasons', 'catalog_id=:id', array(':id' => $model->id));
 			// we only allow deletion via POST request
-			$model->delete();
+			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -204,7 +122,7 @@ class CatalogController extends AdminController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Catalog');
+		$dataProvider=new CActiveDataProvider('Orders');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -215,10 +133,10 @@ class CatalogController extends AdminController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Catalog('search');
+		$model=new Orders('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Catalog']))
-			$model->attributes=$_GET['Catalog'];
+		if(isset($_GET['Orders']))
+			$model->attributes=$_GET['Orders'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -232,7 +150,7 @@ class CatalogController extends AdminController
 	 */
 	public function loadModel($id)
 	{
-		$model=Catalog::model()->findByPk($id);
+		$model=Orders::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -244,7 +162,7 @@ class CatalogController extends AdminController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='flowers-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='orders-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

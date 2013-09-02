@@ -10,5 +10,5 @@
 	<div class="price"><?=$data->discount_price?></div>
 	<?}?>
 	<div class="price_old"><?=CHtml::encode($data->price)?> Р</div>
-	<input type="submit" value="заказать" />
+	<input data-good="<?=$data->id?>" class="set-order" type="button" value="заказать" />
 </div>
