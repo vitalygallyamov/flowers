@@ -85,7 +85,7 @@ class SiteController extends Controller
 
 			if($_POST['pay_type'] == 0 && $_POST['good'] > 0){
 
-				$order = $this->loadOrder($_POST['good']);
+				$order = $this->loadGood($_POST['good']);
 
 				$kassa = new Robokassa('merchant_login', 'pass1', 'pass2', true);
 				$kassa->OutSum = $order->price;
@@ -99,9 +99,9 @@ class SiteController extends Controller
 		Yii::app()->end();
 	}
 
-	public function loadOrder($id)
+	public function loadGood($id)
 	{
-		$model=Orders::model()->findByPk($id);
+		$model=Catalog::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
