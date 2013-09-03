@@ -1,39 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "orders".
+ * This is the model class for table "flowers".
  *
- * The followings are the available columns in table 'orders':
+ * The followings are the available columns in table 'flowers':
  * @property integer $id
- * @property string $fio
- * @property string $phone
- * @property string $address
- * @property string $date_order
- * @property string $msg
- * @property integer $status
- * @property string $date_create
- * @property integer $pay_type
+ * @property string $name
  */
-class Orders extends CActiveRecord
+class Flowers extends CActiveRecord
 {
-	public static $types = array(
-		1 => 'On-line оплата через сайт',
-		2 => 'Наличными',
-		3 => 'On-line оплата через платежные системы'
-	);
-
-	public static $statuses = array(
-		1 => 'Принят',
-		2 => 'Оплачен',
-		3 => 'Готов'
-	);
-
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'orders';
+		return 'flowers';
 	}
 
 	/**
@@ -44,12 +25,11 @@ class Orders extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fio, phone, address, date_order, pay_type', 'required'),
-			array('status, pay_type', 'numerical', 'integerOnly'=>true),
-			array('fio, phone, address, msg', 'length', 'max'=>255),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fio, phone, address, date_order, msg, status, date_create, pay_type', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,14 +51,7 @@ class Orders extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'fio' => 'ФИО',
-			'phone' => 'Телефон',
-			'address' => 'Адрес доставки',
-			'date_order' => 'Дата и время доставки',
-			'msg' => 'Комментарий',
-			'status' => 'Статус',
-			'date_create' => 'Время создания заказа',
-			'pay_type' => 'Способ оплаты',
+			'name' => 'Название',
 		);
 	}
 
@@ -101,14 +74,7 @@ class Orders extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('fio',$this->fio,true);
-		$criteria->compare('phone',$this->phone,true);
-		$criteria->compare('address',$this->address,true);
-		$criteria->compare('date_order',$this->date_order,true);
-		$criteria->compare('msg',$this->msg,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('date_create',$this->date_create,true);
-		$criteria->compare('pay_type',$this->pay_type);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -119,10 +85,24 @@ class Orders extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Orders the static model class
+	 * @return Flowers the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	//return CHtml::listData
+	public static function getList($empty = array()){
+		
+		$result = CHtml::listData(Flowers::model()->findAll(), 'id', function($post) {
+			return CHtml::encode($post->name);
+		});
+
+		if(!empty($empty)) $result += $empty;
+
+		ksort($result);
+		
+		return $result;
 	}
 }

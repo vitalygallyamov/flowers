@@ -30,6 +30,10 @@
 	                    array('label'=>'Поводы'),
 	                    array('label'=>'Создать', 'url'=>'/admin/reasons/create'),
 	                    array('label'=>'Управление', 'url'=>'/admin/reasons/admin'),
+	                    '---',
+	                    array('label'=>'Цветы'),
+	                    array('label'=>'Создать', 'url'=>'/admin/flowers/create'),
+	                    array('label'=>'Управление', 'url'=>'/admin/flowers/admin'),
 	                )),
 	                array('label'=>'Отзывы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'reviews') !== false), 'items' => array(
 	                	array('label'=>'Создать', 'url'=>'/admin/reviews/create'),
@@ -52,15 +56,8 @@
 
     <div class="container-fluid">
 		<div class="row-fluid">
-	    	<div class="span2">
-	      	<?php $this->widget('bootstrap.widgets.TbMenu', array(
-			    'type'=>'list',
-			    'items'=> $this->menu
-			    )); ?>
-	    	</div>
-	    	<div class="span10">
-	      		<?php echo $content;?>
-	    	</div>
+			<?php echo $content;?>
+	    	
 	  	</div>
 	</div>
     

@@ -1,8 +1,8 @@
 <?php
 
-class OrdersController extends AdminController
+class FlowersController extends AdminController
 {
-	public $layout = '/layouts/orders_layout';
+
 	/**
 	 * @return array action filters
 	 */
@@ -56,16 +56,16 @@ class OrdersController extends AdminController
 	 */
 	public function actionCreate()
 	{
-		$model=new Orders;
+		$model=new Flowers;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Orders']))
+		if(isset($_POST['Flowers']))
 		{
-			$model->attributes=$_POST['Orders'];
+			$model->attributes=$_POST['Flowers'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -85,11 +85,11 @@ class OrdersController extends AdminController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Orders']))
+		if(isset($_POST['Flowers']))
 		{
-			$model->attributes=$_POST['Orders'];
+			$model->attributes=$_POST['Flowers'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class OrdersController extends AdminController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Orders');
+		$dataProvider=new CActiveDataProvider('Flowers');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class OrdersController extends AdminController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Orders('search');
+		$model=new Flowers('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Orders']))
-			$model->attributes=$_GET['Orders'];
+		if(isset($_GET['Flowers']))
+			$model->attributes=$_GET['Flowers'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +150,7 @@ class OrdersController extends AdminController
 	 */
 	public function loadModel($id)
 	{
-		$model=Orders::model()->findByPk($id);
+		$model=Flowers::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,7 +162,7 @@ class OrdersController extends AdminController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='orders-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='flowers-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

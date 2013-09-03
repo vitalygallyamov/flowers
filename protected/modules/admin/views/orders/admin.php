@@ -31,16 +31,27 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		//'id',
 		'fio',
 		'phone',
 		'address',
-		'date_order',
+		array(
+            'name' => 'date_order',
+            'value' => 'date("d.m.Y H:m", CDateTimeParser::parse($data->date_order, "yyyy-MM-dd hh:mm:ss"))',
+        ),
 		'msg',
-		/*
-		'status',
-		'date_create',
-		*/
+		array(
+            'name' => 'pay_type',
+            'value' => 'Orders::$types[$data->pay_type]',
+        ),
+		array(
+            'name' => 'status',
+            'value' => 'Orders::$statuses[$data->status]',
+        ),
+		array(
+            'name' => 'date_create',
+            'value' => 'date("d.m.Y H:m", CDateTimeParser::parse($data->date_create, "yyyy-MM-dd hh:mm:ss"))',
+        ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

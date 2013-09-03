@@ -48,6 +48,7 @@ class Catalog extends CActiveRecord
 		return array(
 			'categories'=>array(self::MANY_MANY, 'Category', 'catalog_category(catalog_id, category_id)'),
 			'reasons'=>array(self::MANY_MANY, 'Reasons', 'catalog_reasons(catalog_id, reason_id)'),
+			'flowers'=>array(self::MANY_MANY, 'Flowers', 'catalog_flowers(catalog_id, flower_id)'),
 		);
 	}
 
@@ -123,5 +124,33 @@ class Catalog extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public static function getPriceBoundsList(){
+		$bounds = array(
+			0 => "Цены",
+			1 => '990 – 1500 р.',
+			2 => '1590 – 3000 р',
+			3 => '3100 – 5000 р.',
+			4 => 'от 5000 р.'
+		);
+		return $bounds;
+	}
+
+	public static function setPriceCondition($index, &$criteria){
+		switch ($index) {
+			case 1:
+				$criteria->addBetweenCondition('price', '990', '1500');
+				break;
+			case 2:
+				$criteria->addBetweenCondition('price', '1590', '3000');
+				break;
+			case 3:
+				$criteria->addBetweenCondition('price', '3100', '5000');
+				break;
+			case 4:
+				$criteria->addCondition('price > 5000');
+				break;
+		}
 	}
 }

@@ -32,20 +32,10 @@
 
             <div class="filter">
                 <form action="" id="catalog-filter">
-                    <?php echo Chtml::dropDownList('Filter[category]', 0, 
-                        CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
-                    <select id="fPrice" name="Filter[price]">
-                        <option value="0">
-                            Цена
-                        </option>
-                    </select>
-                    <select id="fFloweras" name="Filter[flowers]">
-                        <option value="0">
-                            Цветы
-                        </option>
-                    </select>
-                    <?php echo Chtml::dropDownList('Filter[reason]', 0, 
-                        CHtml::listData(Reasons::model()->findAll(), 'id', 'name')); ?>
+                    <?php echo Chtml::dropDownList('Filter[category]', 0, Category::getList(array(0 => 'Категория'))); ?>
+                    <?php echo Chtml::dropDownList('Filter[price]', 0, Catalog::getPriceBoundsList()); ?>
+                    <?php echo Chtml::dropDownList('Filter[flower]', 0, Flowers::getList(array(0 => 'Цветы'))); ?>
+                    <?php echo Chtml::dropDownList('Filter[reason]', 0, Reasons::getList(array(0 => 'Повод'))); ?>
                 </form>
             </div>
             <div class="clear"></div>

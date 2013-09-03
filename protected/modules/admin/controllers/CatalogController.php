@@ -109,6 +109,18 @@ class CatalogController extends AdminController
 					}
 				}
 
+				//Flowers
+				if(isset($_POST['flowers'])  && !empty($_POST['flowers'])){
+					
+					$cmDb = Yii::app()->db->createCommand();
+					foreach ($_POST['flowers'] as $value) {
+						$cmDb->insert('catalog_flowers', array(
+							'catalog_id' => $model->id,
+							'flower_id' => $value
+						));
+					}
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
@@ -160,6 +172,20 @@ class CatalogController extends AdminController
 			}
 		}
 
+		//flowers
+		if(isset($_POST['flowers'])){
+			$cmDb->delete('catalog_flowers', 'catalog_id=:id', array(':id' => $model->id));
+
+			if(!empty($_POST['flowers'])){
+				foreach ($_POST['flowers'] as $value) {
+					$cmDb->insert('catalog_flowers', array(
+						'catalog_id' => $model->id,
+						'flower_id' => $value
+					));
+				}
+			}
+		}
+
 		if(isset($_POST['Catalog']))
 		{
 			$model->attributes=$_POST['Catalog'];
@@ -188,6 +214,7 @@ class CatalogController extends AdminController
 			$cmDb = Yii::app()->db->createCommand();
 			$cmDb->delete('catalog_category', 'catalog_id=:id', array(':id' => $model->id));
 			$cmDb->delete('catalog_reasons', 'catalog_id=:id', array(':id' => $model->id));
+			$cmDb->delete('catalog_flowers', 'catalog_id=:id', array(':id' => $model->id));
 			// we only allow deletion via POST request
 			$model->delete();
 

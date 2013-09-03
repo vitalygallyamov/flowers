@@ -31,6 +31,13 @@
 		?>
 	</div>
 
+	<div>
+		<?php
+			echo CHtml::label('Цветы', 'flowers');
+			echo Chosen::multiSelect('flowers', CHtml::listData($model->flowers, 'name', 'id'), Flowers::getList());
+		?>
+	</div>
+
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

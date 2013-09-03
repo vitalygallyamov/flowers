@@ -16,7 +16,7 @@ class m130830_082527_table_reasons extends CDbMigration
         ), 'ENGINE = MYISAM');
 
         $this->addForeignKey('cc_fk1', 'catalog_reasons', 'catalog_id', 'catalog', 'id');
-        $this->addForeignKey('cc_fk2', 'catalog_reasons', 'reason_id', 'category', 'id');
+        $this->addForeignKey('cc_fk2', 'catalog_reasons', 'reason_id', 'reasons', 'id');
 	}
 
 	public function down()

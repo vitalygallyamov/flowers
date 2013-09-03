@@ -92,9 +92,17 @@ class Category extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public static function getList(){
-		return CHtml::listData(Category::model()->findAll(), 'id', function($post) {
+	//return CHtml::listData
+	public static function getList($empty = array()){
+		
+		$result = CHtml::listData(Category::model()->findAll(), 'id', function($post) {
 			return CHtml::encode($post->name);
 		});
+
+		if(!empty($empty)) $result += $empty;
+
+		ksort($result);
+		
+		return $result;
 	}
 }

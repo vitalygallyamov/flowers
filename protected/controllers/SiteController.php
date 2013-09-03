@@ -36,6 +36,7 @@ class SiteController extends Controller
 	{
 		//order model
 		$order = new Orders;
+		$order->pay_type = 1;
 
 		//get reviews
 		$reviews=new CActiveDataProvider('Reviews',array(
@@ -81,24 +82,46 @@ class SiteController extends Controller
 
 	//order action
 	public function actionOrder(){
+		
 		if(isset($_POST['Orders'])){
+			
+			$order = new Orders;
+			$order->attributes = $_POST['Orders'];
 
-			if($_POST['pay_type'] == 0 && $_POST['good'] > 0){
-
-				$order = $this->loadGood($_POST['good']);
-
-				$kassa = new Robokassa('merchant_login', 'pass1', 'pass2', true);
-				$kassa->OutSum = $order->price;
-				$kassa->InvId = $order->id;
-				$kassa->IncCurrLabel = 'WMRM';
-				$kassa->Desc         = 'Тестовая оплата';
-
-				header('Location: ' . $kassa->getRedirectURL());
+			//ajax validation
+			if(isset($_POST['ajax']) && $_POST['ajax'] === 'orders-form'){
+				echo CActiveForm::validate($order);
+				Yii::app()->end();
 			}
+
+			if($order->validate()){
+
+				$order->save(false);
+
+				if($order->pay_type == 1){
+
+					$good = $this->loadGood($_POST['good']);
+
+					$kassa = new Robokassa('merchant_login', 'pass1', 'pass2', true);
+					$kassa->OutSum = $good->price;
+					$kassa->InvId = $good->id;
+					$kassa->IncCurrLabel = 'WMRM';
+					$kassa->Desc = 'Тестовая оплата';
+
+					header('Location: ' . $kassa->getRedirectURL());
+				}
+				/*else if($_POST['pay_type'] == 1){ //наличные
+
+				}else if($_POST['pay_type'] == 2){
+
+				}*/
+			}
+
 		}
 		Yii::app()->end();
 	}
 
+	//get catalog items
 	public function loadGood($id)
 	{
 		$model=Catalog::model()->findByPk($id);
@@ -115,22 +138,34 @@ class SiteController extends Controller
 		if(isset($_POST['Filter'])){
 			$filter = $_POST['Filter'];
 
+			$with = array();
+
 			//category
-			if($filter['category'] != 0 && $filter['reason'] != 0){
-				$criteria->with = array('categories', 'reasons');
-				$criteria->together = true;
-				$criteria->addCondition('category_id=:category_id AND reason_id=:reason_id');
+			if($filter['category'] != 0){
+				$with[] = 'categories';
+				$criteria->addCondition('category_id=:category_id');
 				$criteria->params[':category_id'] = $filter['category'];
-				$criteria->params[':reason_id'] = $filter['reason'];
 			}
 
 			//reasons
-			// if(){
-			// 	$criteria->with = array('reasons');	
-			// 	$criteria->together = true;
-			// 	$criteria->addCondition('reason_id=:reason_id');
-			// 	$criteria->params[':reason_id'] = $filter['reason'];
-			// }
+			if($filter['reason'] != 0){
+				$with[] = 'reasons';
+				$criteria->addCondition('reason_id=:reason_id');
+				$criteria->params[':reason_id'] = $filter['reason'];
+			}
+			//reasons
+			if($filter['flower'] != 0){
+				$with[] = 'flowers';
+				$criteria->addCondition('flower_id=:flower_id');
+				$criteria->params[':flower_id'] = $filter['flower'];
+			}
+			//price
+			if($filter['price'] != 0){
+				Catalog::setPriceCondition($filter['price'], $criteria);
+			}
+
+			$criteria->with = $with;
+			$criteria->together = true;
 		}
 		//print_r($_POST['Filter']);die();
 
