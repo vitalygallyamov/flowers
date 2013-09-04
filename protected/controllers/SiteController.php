@@ -102,7 +102,7 @@ class SiteController extends Controller
 
 					$good = $this->loadGood($_POST['good']);
 
-					$kassa = new Robokassa('merchant_login', 'pass1', 'pass2', true);
+					$kassa = new Robokassa('vetalgal89', 'robopass1', 'robopass2', true);
 					$kassa->OutSum = $good->price;
 					$kassa->InvId = $good->id;
 					$kassa->IncCurrLabel = 'WMRM';
@@ -116,6 +116,9 @@ class SiteController extends Controller
 
 				}*/
 			}
+
+			Yii::app()->user->setFlash('order-confirm','Спасибо, за заказ!');
+			$this->redirect(array('index'));
 
 		}
 		Yii::app()->end();

@@ -29,6 +29,7 @@ jQuery(document).ready(function(){
 		e.preventDefault();
 
 		var id = $(this).data('good');
+		$('#order-form input:text').val('');
 		$('#order-form').find('.good-id').val(id);
 
 		$.fancybox.open('#order-form');

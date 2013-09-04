@@ -43,6 +43,7 @@
     </div>
 
     <div id="catalog" class="product">
+        <div class="flash"><?php echo Yii::app()->user->getFlash('order-confirm'); ?></div>
         <!-- <img src="<?=$this->getAssetsUrl()?>/images/prod.png" alt="" title=""/> -->
         <div class="rew"><? $this->renderPartial('catalog', array('catalog' => $catalog));?></div>
         <div id="order-form" style="display: none;">
