@@ -8,7 +8,15 @@ class OrderController extends Controller
 	}
 
 	public function actionResult(){
-		print_r($_REQUEST);
+		
+		if(isset($_GET)){
+			$kassa = new Robokassa('vetalgal89', 'robopass1', 'robopass2', true);
+			$kassa->OutSum = $_GET['OutSum'];
+			$kassa->InvId = $_GET['InvId'];
+			if($kassa->checkHash(strip_tags($_GET['SignatureValue']))) echo "OK";
+			else echo "Что-то пошло не так!";
+		}
+
 		Yii::app()->end();
 	}
 
