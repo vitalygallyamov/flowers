@@ -21,6 +21,7 @@ class OrderController extends Controller
 	}
 
 	public function actionSuccess(){
+		print_r($_GET);
 		if(isset($_GET)){
 			$kassa = new Robokassa('vetalgal89', 'robopass1', 'robopass2', true);
 			$kassa->OutSum = $_GET['OutSum'];
