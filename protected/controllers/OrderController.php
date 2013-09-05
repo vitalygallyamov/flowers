@@ -32,8 +32,6 @@ class OrderController extends Controller
 
 			$kassa->addCustomValues(array('shp_order_id' => $_GET['shp_order_id']));
 
-			//print_r($_GET); die();
-
 			if($kassa->checkHash2($_GET['SignatureValue'])){
 				$order = Orders::model()->findByPk($_GET['shp_order_id']);
 				$order->status = 2; //Оплачен

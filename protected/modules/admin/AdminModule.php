@@ -35,7 +35,7 @@ class AdminModule extends CWebModule
             'user' => array(
                 'class' => 'CWebUser',             
                 'loginUrl' => Yii::app()->createUrl('admin/user/login'),
-                'returnUrl' => Yii::app()->createUrl('admin/start/index'),
+                'returnUrl' => Yii::app()->createUrl('admin/catalog/admin'),
             ),
             'bootstrap' => array(
                 'class' => 'AdminBootstrap',
