@@ -94,6 +94,8 @@ class SiteController extends Controller
 				Yii::app()->end();
 			}
 
+
+
 			if($order->validate()){
 
 				$order->save(false);
@@ -109,6 +111,8 @@ class SiteController extends Controller
 					$kassa->Desc = 'Тестовая оплата';
 
 					header('Location: ' . $kassa->getRedirectURL());
+
+					Yii::app()->end();
 				}
 				/*else if($_POST['pay_type'] == 1){ //наличные
 
