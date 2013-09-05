@@ -110,6 +110,8 @@ class SiteController extends Controller
 					$kassa->IncCurrLabel = 'WMRM';
 					$kassa->Desc = 'Тестовая оплата';
 
+					$kassa->addCustomValues(array('order_id' => $order->id));
+
 					header('Location: ' . $kassa->getRedirectURL());
 
 					Yii::app()->end();
