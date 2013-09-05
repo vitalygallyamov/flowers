@@ -14,7 +14,7 @@ class OrderController extends Controller
 			$kassa->OutSum = $_GET['OutSum'];
 			$kassa->InvId = $_GET['InvId'];
 
-			$kassa->customVars = array('shp_order_id' => $_GET['shp_order_id']);
+			$kassa->addCustomValues(array('shp_order_id' => $_GET['shp_order_id']));
 
 			if($kassa->checkHash(strip_tags($_GET['SignatureValue']))) echo "OK";
 			else echo "Что-то пошло не так!";
@@ -30,7 +30,7 @@ class OrderController extends Controller
 			$kassa->OutSum = $_GET['OutSum'];
 			$kassa->InvId = $_GET['InvId'];
 
-			$kassa->customVars = array('shp_order_id' => $_GET['shp_order_id']);
+			$kassa->addCustomValues(array('shp_order_id' => $_GET['shp_order_id']));
 
 			if($kassa->checkHash(strip_tags($_GET['SignatureValue']))){
 				$order = Orders::model()->findByPk($_GET['shp_order_id']);
