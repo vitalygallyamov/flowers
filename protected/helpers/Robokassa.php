@@ -80,6 +80,14 @@ class Robokassa {
 		return (strtolower($hash) == $hashGenerated);
 	}
 
+	public function checkHash2($hash)
+	{
+		$customVars = $this->getCustomValues();
+		$hashGenerated = md5("{$this->OutSum}:{$this->InvId}:{$this->password1}{$customVars}");
+
+		return (strtolower($hash) == $hashGenerated);
+	}
+
 	/**
 	* Получение строки с пользовательскими данными для шифрования
  	*
