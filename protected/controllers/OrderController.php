@@ -35,13 +35,14 @@ class OrderController extends Controller
 			if($kassa->checkHash(strip_tags($_GET['SignatureValue']))){
 				$order = Orders::model()->findByPk($_GET['shp_order_id']);
 				$order->status = 2; //Оплачен
+				$order->update(array('status'));
 
 				Yii::app()->user->setFlash('order-confirm','Спасибо, за заказ!');
-				$this->redirect(array('index'));
+				$this->redirect(array('/site/index'));
 			}
 			else{
 				Yii::app()->user->setFlash('order-confirm','Ошибка!');
-				$this->redirect(array('index'));
+				$this->redirect(array('/site/index'));
 			}
 		}
 		Yii::app()->end();
