@@ -38,6 +38,10 @@ class SiteController extends Controller
 		$order = new Orders;
 		$order->pay_type = 1;
 
+		//phone
+		$phone = new Phones;
+		$phone->status = 1;
+
 		//get reviews
 		$reviews=new CActiveDataProvider('Reviews',array(
 			'pagination'=>array(
@@ -52,10 +56,16 @@ class SiteController extends Controller
 		    ),
 		));
 
+		if(isset($_GET['ajax']) && $_GET['ajax'] == 'catalog-items'){
+			$this->renderPartial('catalog', array('catalog' => $catalog));
+			Yii::app()->end();
+		}
+
 		$this->render('index', array(
 			'reviews' => $reviews,
 			'catalog' => $catalog,
-			'order' => $order
+			'order' => $order,
+			'phone' => $phone
 		));
 	}
 
@@ -93,8 +103,6 @@ class SiteController extends Controller
 				echo CActiveForm::validate($order);
 				Yii::app()->end();
 			}
-
-
 
 			if($order->validate()){
 

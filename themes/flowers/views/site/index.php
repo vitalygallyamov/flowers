@@ -1,4 +1,7 @@
-    <div class="panel">
+   <div id="phone-form" style="display: none;">
+       <?php $this->renderPartial('/phones/_form', array('model' => $phone));?>
+   </div>
+   <div class="panel">
         <div class="wr">
             <nav>
                 <ul>

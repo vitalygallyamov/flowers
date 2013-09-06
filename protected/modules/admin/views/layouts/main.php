@@ -42,6 +42,9 @@
 	                array('label'=>'Заказы', 'url'=>'#', 'active'=> (strpos($this->getId(), 'orders') !== false), 'items' => array(
 	                    array('label'=>'Управление', 'url'=>'/admin/orders/admin'),
 	                )),
+	                array('label'=>'Заявки на звонок', 'url'=>'#', 'active'=> (strpos($this->getId(), 'phones') !== false), 'items' => array(
+	                    array('label'=>'Управление', 'url'=>'/admin/phones/admin'),
+	                )),
 	            ),
 	        ),
 	        array(

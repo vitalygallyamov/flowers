@@ -24,7 +24,7 @@ jQuery(document).ready(function(){
 		});
 	});
 
-	//
+	//order-form
 	$('#catalog').on('click', '.set-order', function(e){
 		e.preventDefault();
 
@@ -33,6 +33,12 @@ jQuery(document).ready(function(){
 		$('#order-form').find('.good-id').val(id);
 
 		$.fancybox.open('#order-form');
+	});
+
+	//phone form
+	$('.get-call').on('click', function(e){
+		e.preventDefault();
+		$.fancybox.open('#phone-form');
 	});
 
 	//filter catalog

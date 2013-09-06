@@ -57,7 +57,7 @@
                 <span class="tel">
                     +7(3412)773576
                 </span>
-                <a href="#" class="popup">
+                <a href="#" class="popup get-call">
                     Заказать звонок
                 </a>
             </span>

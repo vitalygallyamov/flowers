@@ -15,5 +15,5 @@
     'enablePagination' => true,
     'template' => '{items}<div class="nav">{pager}</div>',
     'itemView'=>'_catalog_item',
-    'id' => 'reviews',
+    'id' => 'catalog-items',
 )); ?>
