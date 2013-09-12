@@ -12,6 +12,7 @@
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.gradienttext.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/cusel.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/fotorama.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="<?=$this->getAssetsUrl()?>/js/common.js"></script>
 <script>
@@ -22,14 +23,17 @@
       $('.tel').gradientText({
           colors: ['#39b5a5', '#9acd5a']
       });
+      $('.item .text .name').gradientText({
+          colors: ['#008c93', '#1f9cd4']
+      });
   });
-  // $(function(select_cusel){
-  //     var params = {
-  //         changedEl: "select",
-  //         scrollArrows: false
-  //     }
-  //     cuSel(params);
-  // });
+  $(function(select_cusel){
+      var params = {
+          changedEl: "select",
+          scrollArrows: false
+      }
+      cuSel(params);
+  });
   jQuery(document).ready(function() {
       jQuery('#carousel').jcarousel({
           scroll: 6,
@@ -37,6 +41,9 @@
           auto: true,
           wrap: "circular"
       });
+  });
+  $(function() {
+    $('.item .images').fotorama({width:320, height:378, nav:'none', arrows: 'true'});
   });
 </script>
 </head>

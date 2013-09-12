@@ -48,10 +48,228 @@
     <div id="catalog" class="product">
         <div class="flash"><?php echo Yii::app()->user->getFlash('order-confirm'); ?></div>
         <!-- <img src="<?=$this->getAssetsUrl()?>/images/prod.png" alt="" title=""/> -->
-        <div class="rew"><? $this->renderPartial('catalog', array('catalog' => $catalog));?></div>
+        <div class="items"><? $this->renderPartial('catalog', array('catalog' => $catalog));?></div>
         <div id="order-form" style="display: none;">
             <? $this->renderPartial('_order_form', array('model' => $order)); ?>
         </div>
+        <?/*
+        <div class="items">
+
+            <div class="item">
+                <div class="bx">
+                    <div class="price">
+                        <span class="col">
+                            <span>9999 &#8399;</span>
+                        </span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="bx">
+                    <div class="price">
+                        <span class="col">
+                            <span>9999 &#8399;</span>
+                        </span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images" id="fl_1">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="bx">
+                    <div class="price old">
+                        <span class="col"><s>12000 &#8399;</s><span>9999 &#8399;</span></span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="bx">
+                    <div class="price">
+                        <span class="col">
+                            <span>9999 &#8399;</span>
+                        </span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="bx">
+                    <div class="price">
+                        <span class="col">
+                            <span>9999 &#8399;</span>
+                        </span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="bx">
+                    <div class="price">
+                        <span class="col">
+                            <span>9999 &#8399;</span>
+                        </span>
+                    </div>
+                    <div class="text">
+                        <span class="name">Жоржетта</span>
+                        <div class="desc">
+                            розы, гладиоусы, пионы, ромашки, гортензии, фиалки, лиллии, тюльпаны
+                        </div>
+                        <div class="submit">
+                            <dl>
+                                <dt>
+                                    9999 &#8399;
+                                </dt>
+                                <dd>
+                                    <input type="submit" value="Заказать" />
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="images">
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                        <img src="<?=$this->getAssetsUrl()?>/images/1.png" alt="" title="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+                    <ul>
+                        <li>
+                            Страницы:
+                        </li>
+                        <li>
+                            <a href="#">
+                                1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                2
+                            </a>    
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                3
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                4
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Показать все
+                            </a>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+        <a href="#" class="button prev">Назад</a>
+        <a href="#" class="button next">Вперед</a>*/?>
     </div>
 
     <div class="plus">
@@ -154,7 +372,141 @@
             </li>
         </ul>
     </div>
+    <!--online pay-->
+    <div class="online">
+        <div class="wr">
+            <div class="sp1">
+                <h3>
+                    On-line оплата через сайт
+                </h3>
+                <ul>
+                    <li class="step1">
+                    <span class="head">
+                        Нажмите
+                    </span>
+                    <span class="desc">
+                        на кнопку Заказать
+                    </span>
+                    </li>
+                    <li class="step2">
+                    <span class="head">
+                        Заполните
+                    </span>
+                    <span class="desc">
+                        данные в форме и нажмите Купить
+                    </span>
+                    </li>
+                    <li class="step3">
+                    <span class="head">
+                        Перейдите
+                    </span>
+                    <span class="desc">
+                        в платежную систему и выберите способ оплаты
+                    </span>
+                    </li>
+                    <li class="step6">
+                    <span class="head">
+                        Получите
+                    </span>
+                    <span class="desc">
+                        смс-уведомление об оплате
+                    </span>
+                    </li>
+                    <li class="step5">
+                    <span class="head">
+                        Проверьте
+                    </span>
+                    <span class="desc">
+                        данные, введя пароль из смс
+                    </span>
+                    </li>
+                    <li class="step4">
+                    <span class="head">
+                        Заполните
+                    </span>
+                    <span class="desc">
+                        информацию о своей карте
+                    </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="sp2">
+                <h3>
+                    Наличными $ или &#8399;
+                </h3>
 
+                <div class="bg">
+                    <dl class="coll-en">
+                        <dt>
+                            Курьеру
+                        </dt>
+                        <dd>
+                            Курьер подъедет по указанному Вами адресу, возьмет оплату и оставит Вам чек
+                        </dd>
+                    </dl>
+                    <dl class="coll-de">
+                        <dt>
+                            Евросеть, Связной
+                        </dt>
+                        <dd>
+                            В любом отделении Евросети или Связного, назвав номер Вашего Яндекс-кошелька
+                        </dd>
+                    </dl>
+                    <dl class="coll-tre">
+                        <dt>
+                            В отделе
+                        </dt>
+                        <dd>
+                            Вы можете приехать в нам в гости, мы находимся по адресу Ленина 102в (Ипподром)
+                        </dd>
+                    </dl>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="sp3">
+                <h3>
+                    On-line оплата<br/> через платежные системы
+                </h3>
+
+                <div class="bg">
+                    <dl class="coll-en">
+                        <dt>
+                            <span class="icon icon-ya"><i></i>Яндекс деньги</span>
+                        </dt>
+                        <dd>
+                            Переведите необходимую сумму на наш счет 410011363103133 в комментариях укажите ваши имя или фамилию
+                        </dd>
+                    </dl>
+                    <dl class="coll-de">
+                        <dt>
+                            <span class="icon icon-qw"><i></i>Киви-кошелек</span>
+                        </dt>
+                        <dd>
+                            Через терминал оплаты или переводом с вашего кошелька на наш счет  922-517-35-76, в комментариях укажите имя или фамилию
+                        </dd>
+                    </dl>
+                    <dl class="coll-tre">
+                        <dt>
+                            <span class="icon icon-wb"><i></i>Web-money</span>
+                        </dt>
+                        <dd>
+                            Переводите на шаш кошелек R387430099336 с указанием ваших фамилии или имени в примечании
+                        </dd>
+                    </dl>
+                    <dl class="coll-ctr">
+                        <dt>
+                            <span class="icon icon-sb"><i></i>Сбербанк</span>
+                        </dt>
+                        <dd>
+                            Переведите деньги на наш счет с карты или в ближайшем отделении банка
+                        </dd>
+                    </dl>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--online pay End-->
     <!--rew-->
     <div class="rew">
 

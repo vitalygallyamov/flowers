@@ -35,6 +35,21 @@ jQuery(document).ready(function(){
 		$.fancybox.open('#order-form');
 	});
 
+	//show all items catalog
+	$("#catalog .nav ul").append('<li><a class="show-all" href="/site/index?ajax=catalog-items&show_all=1">Показать все</a></li>');
+	$('#catalog').on('click', '.show-all', function(e){
+		e.preventDefault();
+		$('.keys').attr('/?show');
+		// $.ajax({
+		// 	url: '/site/index',
+		// 	type: 'GET',
+		// 	data: {ajax: 'catalog-items', show_all: true},
+		// 	success: function(result){
+		// 		$('#catalog .items').html(result);
+		// 	}
+		// });
+	});
+
 	//phone form
 	$('.get-call').on('click', function(e){
 		e.preventDefault();
@@ -48,7 +63,7 @@ jQuery(document).ready(function(){
 			type: 'POST',
 			data: $('#catalog-filter').serialize(),
 			success: function(result){
-				$('#catalog .rew').html(result);
+				$('#catalog .items').html(result);
 			}
 		});
 	});

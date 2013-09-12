@@ -57,6 +57,12 @@ class SiteController extends Controller
 		));
 
 		if(isset($_GET['ajax']) && $_GET['ajax'] == 'catalog-items'){
+			//show all data
+			if(isset($_GET['show_all'])){
+				$catalog = new CActiveDataProvider('Catalog',array(
+					'pagination'=>false
+				));
+			}
 			$this->renderPartial('catalog', array('catalog' => $catalog));
 			Yii::app()->end();
 		}
